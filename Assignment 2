@@ -1,0 +1,46 @@
+'''Requirements 
+The encryption should take two user inputs (shift1, shift2), and follow these rules: 
+
+• For lowercase letters: 
+o If the letter is in the first half of the alphabet (a-m): shift forward by shift1 * 
+shift2 positions 
+o If the letter is in the second half (n-z): shift backward by shift1 + shift2 
+positions 
+
+• For uppercase letters: 
+o If the letter is in the first half (A-M): shift backward by shift1 positions 
+o If the letter is in the second half (N-Z): shift forward by shift2² positions 
+(shift2 squared) 
+
+• Other characters: 
+o Spaces, tabs, newlines, special characters, and numbers remain 
+unchanged 
+'''
+f = open('raw_text.txt', 'r')
+
+
+# with open('raw_text.txt'): 
+
+for char in f:
+    shift1 = int(input("Enter a number"))
+    shift2 = int(input("Enter a number"))
+    
+    # ASCII values: a-m (97-109), n-z (110-122)
+    ascii_value = ord(char)
+    if 97 <= ascii_value <= 109: 
+        lowercase_char1 = chr(ascii_value + shift1*shift2)
+
+    elif 110 <= ascii_value <= 122:
+        lowercase_char2 = chr(ascii_value - (shift1 + shift2))
+
+    # ASCII values: A-M (65-77), N-Z (78-90)
+    elif 65 <= ascii_value <= 77:
+        uppercase_char1 = chr(ascii_value - shift1)
+
+    elif 78 <= ascii_value <= 90:
+        uppercase_char2 = chr(ascii_value + shift2**2)
+    # Other characters: remain unchanged     
+    else:
+        everything_else = char
+
+
