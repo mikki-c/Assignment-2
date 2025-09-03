@@ -1,0 +1,28 @@
+import turtle
+
+def edge(modlength, depth):
+    if depth == 0:
+        t.forward(modlength)
+    else:
+        modlength /= 3.0
+        edge(modlength, depth - 1)
+        t.left(60)
+        edge(modlength, depth - 1)
+        t.right(120)
+        edge(modlength, depth - 1)
+        t.left(60)
+        edge(modlength, depth - 1)
+
+side = int(input("What is the number of sides?"))
+length = float(input("What is the side length? "))
+depth = int(input("What is the depth?"))
+    
+t = turtle.Turtle()
+t.color("black")
+t.shape("turtle")
+angle = 360 / side
+for _ in range(side):
+    edge(length, depth)
+    t.left(angle)
+
+turtle.done()
