@@ -1,0 +1,29 @@
+f = open('raw_text.txt', 'r')
+
+shift1 = int(input("Enter a number "))
+shift2 = int(input("Enter a number "))
+
+text = f.read()
+code = ""
+for c in text: 
+    ascii = ord(c)
+    if 97 <= ascii <= 109: 
+        lowercase_char1 = ascii + shift1*shift2
+        code = (code + chr(lowercase_char1))
+    elif 110 <= ascii <= 122:
+        lowercase_char2 = ascii - (shift1 + shift2)
+        code = (code + chr(lowercase_char2))
+    elif 65 <= ascii <= 77:
+        uppercase_char1 = ascii - shift1
+        code = (code + chr(uppercase_char1))
+    elif 78 <= ascii <= 90:
+        uppercase_char2 = ascii + shift2**2 
+        code = (code + chr(uppercase_char2))
+    else:
+        everything_else = (ascii)
+        code = (code + chr(everything_else))
+
+# print("Encrypted Text is: ", code)
+
+with open("encrypted_text.txt", "w") as f: 
+    f.write(code)
